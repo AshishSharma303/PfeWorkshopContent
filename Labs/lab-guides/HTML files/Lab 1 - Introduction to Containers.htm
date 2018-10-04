@@ -1,0 +1,2198 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Developing Applications with Containers</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@MS Mincho";
+	panose-1:2 2 6 9 4 2 5 8 3 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:22.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:black;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:24.0pt;
+	margin-right:.1in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	border:none;
+	padding:0in;
+	font-size:20.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:#4F81BD;
+	font-weight:normal;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:black;}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Segoe UI",sans-serif;}
+h6
+	{mso-style-link:"Heading 6 Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Segoe UI",sans-serif;
+	font-style:italic;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:11.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	font-weight:bold;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:22.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:33.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:44.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:55.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:66.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:77.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:88.0pt;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Comment Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Cambria",serif;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	text-align:center;
+	font-size:9.0pt;
+	font-family:"Cambria",serif;
+	color:#1F497D;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{mso-style-link:"Document Map Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Comment Subject Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:10.0pt;
+	font-family:"Cambria",serif;
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma",sans-serif;}
+span.MsoPlaceholderText
+	{color:gray;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoRMPane, li.MsoRMPane, div.MsoRMPane
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-link:"List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{mso-style-link:"List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{mso-style-link:"List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{mso-style-link:"List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	font-size:14.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:#365F91;
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma",sans-serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Segoe UI",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Segoe UI",sans-serif;
+	color:#4F81BD;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-link:"Heading 6";
+	font-family:"Segoe UI",sans-serif;
+	font-weight:bold;
+	font-style:italic;}
+p.Bullet, li.Bullet, div.Bullet
+	{mso-style-name:Bullet;
+	mso-style-link:"Bullet Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:.8in;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Segoe UI",sans-serif;
+	font-weight:bold;}
+span.BulletChar
+	{mso-style-name:"Bullet Char";
+	mso-style-link:Bullet;
+	font-family:"Cambria",serif;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Segoe UI",sans-serif;
+	color:black;
+	font-weight:bold;}
+p.High-levelsteps, li.High-levelsteps, div.High-levelsteps
+	{mso-style-name:"High-level steps";
+	mso-style-link:"High-level steps Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:.6in;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:bold;}
+p.Granularsteps, li.Granularsteps, div.Granularsteps
+	{mso-style-name:"Granular steps";
+	mso-style-link:"Granular steps Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:85.5pt;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;}
+span.High-levelstepsChar
+	{mso-style-name:"High-level steps Char";
+	mso-style-link:"High-level steps";
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:bold;}
+p.BulletIndent, li.BulletIndent, div.BulletIndent
+	{mso-style-name:"Bullet Indent";
+	mso-style-link:"Bullet Indent Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:1.3in;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.GranularstepsChar
+	{mso-style-name:"Granular steps Char";
+	mso-style-link:"Granular steps";
+	font-family:"Cambria",serif;
+	color:black;}
+p.BulletIndentIndent, li.BulletIndentIndent, div.BulletIndentIndent
+	{mso-style-name:"Bullet Indent Indent";
+	mso-style-link:"Bullet Indent Indent Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:1.65in;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.BulletIndentChar
+	{mso-style-name:"Bullet Indent Char";
+	mso-style-link:"Bullet Indent";
+	font-family:"Cambria",serif;}
+p.moregranularsteps, li.moregranularsteps, div.moregranularsteps
+	{mso-style-name:"more granular steps";
+	mso-style-link:"more granular steps Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:102.95pt;
+	text-indent:-9.35pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;}
+span.BulletIndentIndentChar
+	{mso-style-name:"Bullet Indent Indent Char";
+	mso-style-link:"Bullet Indent Indent";
+	font-family:"Cambria",serif;}
+p.NotesCourse, li.NotesCourse, div.NotesCourse
+	{mso-style-name:Notes_Course;
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:.1in;
+	font-size:9.0pt;
+	font-family:"Segoe UI",sans-serif;}
+span.moregranularstepsChar
+	{mso-style-name:"more granular steps Char";
+	mso-style-link:"more granular steps";
+	font-family:"Cambria",serif;
+	color:black;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Cambria",serif;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Cambria",serif;}
+p.Code, li.Code, div.Code
+	{mso-style-name:Code;
+	mso-style-link:"Code Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:1.0in;
+	line-height:115%;
+	background:#D9D9D9;
+	font-size:11.0pt;
+	font-family:Consolas;}
+span.CodeChar
+	{mso-style-name:"Code Char";
+	mso-style-link:Code;
+	font-family:Consolas;
+	background:#D9D9D9;}
+span.CommentTextChar
+	{mso-style-name:"Comment Text Char";
+	mso-style-link:"Comment Text";
+	font-family:"Cambria",serif;}
+span.CommentSubjectChar
+	{mso-style-name:"Comment Subject Char";
+	mso-style-link:"Comment Subject";
+	font-family:"Cambria",serif;
+	font-weight:bold;}
+p.IndentedListParagraph, li.IndentedListParagraph, div.IndentedListParagraph
+	{mso-style-name:"Indented List Paragraph";
+	mso-style-link:"Indented List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:1.0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.IndentedListParagraphCxSpFirst, li.IndentedListParagraphCxSpFirst, div.IndentedListParagraphCxSpFirst
+	{mso-style-name:"Indented List ParagraphCxSpFirst";
+	mso-style-link:"Indented List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.IndentedListParagraphCxSpMiddle, li.IndentedListParagraphCxSpMiddle, div.IndentedListParagraphCxSpMiddle
+	{mso-style-name:"Indented List ParagraphCxSpMiddle";
+	mso-style-link:"Indented List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+p.IndentedListParagraphCxSpLast, li.IndentedListParagraphCxSpLast, div.IndentedListParagraphCxSpLast
+	{mso-style-name:"Indented List ParagraphCxSpLast";
+	mso-style-link:"Indented List Paragraph Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:1.0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.ListParagraphChar
+	{mso-style-name:"List Paragraph Char";
+	mso-style-link:"List Paragraph";
+	font-family:"Cambria",serif;}
+span.IndentedListParagraphChar
+	{mso-style-name:"Indented List Paragraph Char";
+	mso-style-link:"Indented List Paragraph";
+	font-family:"Cambria",serif;}
+p.LabTitle, li.LabTitle, div.LabTitle
+	{mso-style-name:"Lab Title";
+	mso-style-link:"Lab Title Char";
+	margin-top:24.0pt;
+	margin-right:.1in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	page-break-before:always;
+	page-break-after:avoid;
+	border:none;
+	padding:0in;
+	font-size:20.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:#4F81BD;}
+p.IgnoredText, li.IgnoredText, div.IgnoredText
+	{mso-style-name:"Ignored Text";
+	mso-style-link:"Ignored Text Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:gray;}
+span.LabTitleChar
+	{mso-style-name:"Lab Title Char";
+	mso-style-link:"Lab Title";
+	font-family:"Segoe UI",sans-serif;
+	color:#4F81BD;}
+p.TaskHeading, li.TaskHeading, div.TaskHeading
+	{mso-style-name:"Task Heading";
+	mso-style-link:"Task Heading Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Segoe UI",sans-serif;
+	font-weight:bold;}
+span.IgnoredTextChar
+	{mso-style-name:"Ignored Text Char";
+	mso-style-link:"Ignored Text";
+	font-family:"Segoe UI",sans-serif;
+	color:gray;
+	font-weight:normal;}
+p.TaskName, li.TaskName, div.TaskName
+	{mso-style-name:"Task Name";
+	mso-style-link:"Task Name Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:.75in;
+	text-indent:-.25in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:bold;}
+span.TaskHeadingChar
+	{mso-style-name:"Task Heading Char";
+	mso-style-link:"Task Heading";
+	font-family:"Segoe UI",sans-serif;
+	font-weight:bold;}
+p.TaskDetail, li.TaskDetail, div.TaskDetail
+	{mso-style-name:"Task Detail";
+	mso-style-link:"Task Detail Char";
+	margin-top:0in;
+	margin-right:.1in;
+	margin-bottom:6.0pt;
+	margin-left:67.5pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;}
+span.TaskNameChar
+	{mso-style-name:"Task Name Char";
+	mso-style-link:"Task Name";
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:bold;}
+p.ExerciseScenerio, li.ExerciseScenerio, div.ExerciseScenerio
+	{mso-style-name:"Exercise Scenerio";
+	mso-style-link:"Exercise Scenerio Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.TaskDetailChar
+	{mso-style-name:"Task Detail Char";
+	mso-style-link:"Task Detail";
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:normal;}
+p.Note, li.Note, div.Note
+	{mso-style-name:Note;
+	mso-style-link:"Note Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;}
+span.ExerciseScenerioChar
+	{mso-style-name:"Exercise Scenerio Char";
+	mso-style-link:"Exercise Scenerio";
+	font-family:"Cambria",serif;}
+p.Alert, li.Alert, div.Alert
+	{mso-style-name:Alert;
+	mso-style-link:"Alert Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:1.0in;
+	line-height:115%;
+	background:#FFCC66;
+	border:none;
+	padding:0in;
+	font-size:11.0pt;
+	font-family:"Cambria",serif;
+	color:black;}
+span.NoteChar
+	{mso-style-name:"Note Char";
+	mso-style-link:Note;
+	font-family:"Cambria",serif;
+	color:black;
+	font-weight:normal;}
+p.CompletionMessage, li.CompletionMessage, div.CompletionMessage
+	{mso-style-name:"Completion Message";
+	mso-style-link:"Completion Message Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Cambria",serif;
+	font-style:italic;}
+span.AlertChar
+	{mso-style-name:"Alert Char";
+	mso-style-link:Alert;
+	font-family:"Cambria",serif;
+	color:black;
+	background:#FFCC66;
+	font-weight:normal;}
+p.Idea, li.Idea, div.Idea
+	{mso-style-name:Idea;
+	mso-style-link:"Idea Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:1.0in;
+	line-height:115%;
+	background:#DBE5F1;
+	border:none;
+	padding:0in;
+	font-size:11.0pt;
+	font-family:"Segoe UI",sans-serif;}
+span.CompletionMessageChar
+	{mso-style-name:"Completion Message Char";
+	mso-style-link:"Completion Message";
+	font-family:"Cambria",serif;
+	font-style:italic;}
+p.ExerciseHeading, li.ExerciseHeading, div.ExerciseHeading
+	{mso-style-name:"Exercise Heading";
+	mso-style-link:"Exercise Heading Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:12.0pt;
+	margin-left:0in;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.IdeaChar
+	{mso-style-name:"Idea Char";
+	mso-style-link:Idea;
+	font-family:"Segoe UI",sans-serif;
+	background:#DBE5F1;}
+span.ExerciseHeadingChar
+	{mso-style-name:"Exercise Heading Char";
+	mso-style-link:"Exercise Heading";
+	font-family:"Segoe UI",sans-serif;
+	color:black;
+	font-weight:bold;}
+span.DocumentMapChar
+	{mso-style-name:"Document Map Char";
+	mso-style-link:"Document Map";
+	font-family:"Times New Roman",serif;}
+span.normaltextrun
+	{mso-style-name:normaltextrun;}
+span.findhit
+	{mso-style-name:findhit;}
+span.spellingerror
+	{mso-style-name:spellingerror;}
+span.contextualspellingandgrammarerror
+	{mso-style-name:contextualspellingandgrammarerror;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:11.0in 8.5in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoTocHeading>Table of Contents</p>
+
+<p class=MsoToc2><span class=MsoHyperlink><a href="#_Toc504835356">Lab: Module
+1 - Introduction to Containers<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835357">Duration: 90
+minutes<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835358">Prerequisite<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835359">Exercise 1:
+Running Your First Container<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>2</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835360">Exercise 2: 
+Working with Docker Command Line Interface (CLI)<span style='color:windowtext;
+display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835361">Exercise 3: 
+Building Custom Container Images with Dockerfile: NodeJS, Nginx, and ASP.NET
+Core 2.x<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>8</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835362">Exercise 4: 
+Interaction with a Running Container<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>16</span></a></span></p>
+
+<p class=MsoToc3><span class=MsoHyperlink><a href="#_Toc504835363">Exercise 5: 
+Tagging<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>21</span></a></span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<div style='border:none;border-bottom:solid #333399 1.0pt;padding:0in 0in 1.0pt 0in;
+margin-left:0in;margin-right:.1in'>
+
+<p class=LabTitle><a name="_Toc504835356">Lab: </a>Module 1 - Introduction to
+Containers </p>
+
+</div>
+
+<p class=ExerciseHeading><a name="_Toc310325841"></a><a name="_Toc300310217"></a><a
+name="_Toc504835357"></a><a name="_Toc491074260"></a><a name="_Toc397503478"></a>Duration:
+90 minutes </p>
+
+<p class=ExerciseHeading><a name="_Toc504835358">Prerequisite</a></p>
+
+<p class=MsoListParagraph>You must have labs virtual machines running on the
+Learn on Demand (LOD) website and register an account on the LOD website.</p>
+
+<p class=ExerciseHeading><a name="_Toc504835359">Exercise 1: Running Your First
+Container</a> </p>
+
+<p class=MsoListParagraph>In this exercise, you will launch a fully functional WordPress
+blog engine using Docker Linux container. You will learn the commands needed to
+pull the container image and then launch the container using Docker CLI. 
+Finally, you will observe that you during the process of running the container
+you don’t need to install any of the WordPress dependencies on the machine
+since container comes will both the WordPress engine binaries and all its
+dependencies pre-installed.  </p>
+
+<p class=TaskHeading>Tasks</p>
+
+<p class=TaskName>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Running WordPress Blog Engine Container</p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Go
+to the Lab on Demand (LOD) Linux Ubuntu Virtual Machine.</p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+Start on the VM if you see this screen. Click on the Machines tab on the right
+to get the password for the VM. You can click on the Machines tab at any time
+if you need to reference the password for the VM again. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img width=541 height=394
+id="Picture 3"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image001.jpg"> </p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+open a command line prompt, right click on the desktop and choose <b>open
+terminal</b>. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img width=525 height=420
+id="Picture 47"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image002.jpg"> </p>
+
+<p class=TaskDetail style='margin-left:1.0in'>&nbsp;</p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+“<span style='font-family:Consolas'>sudo -i</span>” to ensure all commands have
+elevated privileges. You will be prompted for your password, type it in, then
+press enter. You should see root@super in your command line as the user. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img width=475 height=100
+id="Picture 1"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image003.png"></p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;text-indent:-.25in;line-height:107%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Type
+“<span style='font-family:Consolas'>docker pull tutum/wordpress</span>”. This
+will tell Docker client to connect to public Docker Registry and download the
+latest version of the WordPress container image published by tutum (hence the
+format tutum/wordpress). The container image has been pre-downloaded for you on
+the VM to save you a few minutes, but you will see each layer that is cached
+show the text ‘Already exists’. </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img width=515 height=383 id="Picture 85"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image004.jpg"></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the command “<span style='font-family:Consolas'>docker images</span>” and
+notice “tutum/wordpress” container image is now available locally for you to
+use.</p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img width=685 height=134
+id="Picture 86"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image005.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>That’s
+it! You can now run the entire WordPress in a container. To do that run the
+command                                                                       </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'> “<span
+style='font-family:Consolas'>docker run -d -p 80:80 tutum/wordpress</span>”.  Pay
+close attention to the dash “-” symbol in front of “-p” and “-d” in the
+command. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img width=625
+height=35 id="Picture 87"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image006.png"> </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the following “<span style='font-family:Consolas'>docker ps</span>” to see the
+running containers. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img width=690
+height=84 id="Picture 90"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image007.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Click
+on the Firefox icon on the left: </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img width=235
+height=338 id="Picture 88"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image008.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>10.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Navigate to <a
+href="http://localhost">http://localhost</a> and you should see WordPress. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=569 height=489 id="Picture 89"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image009.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>11.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Let’s launch two more
+containers based on “tutum/wordpress” image. Execute following commands (one
+line at a time)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in'><span
+style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in'><span
+style='font-family:Consolas'>docker run -d -p 8080:80 tutum/wordpress</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in'><span
+style='font-family:Consolas'>docker run -d -p 9090:80 tutum/wordpress </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=645 height=69 id="Picture 91"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image010.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>12.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Run ‘docker ps’ to see
+all 3 running containers and their port numbers:</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=672 height=157 id="Picture 94"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image011.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>13.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>Now open a new browser
+window and navigate to URL (using DNS or IP as before) but with port “8080”
+append to it.  You can also try port “9090”. Notice that you now have three
+WordPress blog instances running inside separate containers launched within few
+seconds. Contrast this to instead creating and running WordPress on virtual
+machine, which could take significantly more time.</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=728 height=315 id="Picture 92"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image012.png"></p>
+
+<p class=TaskName style='margin-left:0in;text-indent:0in'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>14.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>If you want to run a
+container with a name, you can specify the parameter like this: ‘<span
+style='font-family:Consolas'>docker run --name mycontainer1 -d -p 8081:80
+tutum/wordpress</span>’. Run this on port 8081 so that it does not conflict
+with one of the previously running containers. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=728 height=47 id="Picture 648"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image013.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>15.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>And, now if you run ‘<span
+style='font-family:Consolas'>docker ps</span>’, you will see that the container
+has the name you assigned it using the --name parameter. </p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=733 height=175 id="Picture 649"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image014.png"></p>
+
+<p class=TaskName style='margin-left:0in;text-indent:0in'><span
+style='font-weight:normal'>&nbsp;</span></p>
+
+<p class=TaskName style='margin-left:0in;text-indent:0in'>&nbsp;</p>
+
+<p class=ExerciseHeading><a name="_Toc504835360">Exercise 2:  Working with
+Docker Command Line Interface (CLI)</a> </p>
+
+<p class=MsoListParagraph>In this exercise, you will learn about common Docker
+commands needed to work with containers. A comprehensive list of docker
+commands are available at: <a
+href="https://docs.docker.com/engine/reference/commandline/docker">https://docs.docker.com/engine/reference/commandline/docker</a></p>
+
+<p class=TaskHeading>Tasks</p>
+
+<p class=TaskName>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Stopping Single Container</p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>First
+list all the containers currently running by executing “<span style='font-family:
+Consolas'>docker ps</span>” command. You should see list of all running
+containers. Notice, the list contains multiple containers based on WordPress
+image that you run in previous exercise. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=672
+height=157 id="Picture 95"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image011.png"></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>You
+can stop a running container by using “<span style='font-family:Consolas'>docker
+stop &lt;&lt;CONTAINER-ID&gt;&gt;</span>” command. Where CONTAINER-ID is the
+identifier of a running container. <b><u>*Note: You can just use the first
+couple characters to identity the container ID, such as “c27” for the
+screenshot below.</u></b></p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=425
+height=36 id="Picture 640"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image015.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Now
+run the “<span style='font-family:Consolas'>docker ps</span>” command and notice
+the listing show one less container running. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=670 height=119 id="Picture 641"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image016.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If
+you want see the Container ID of the stopped container, and you forgot the
+Container ID, you can run ‘<span style='font-family:Consolas'>docker ps -a</span>’
+to see all containers, even ones that are stopped/exited.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=724 height=263 id="Picture 647"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image017.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=TaskName>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Restart a Container</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+previous task you issued a Docker command to stop a running container. You can
+also issue command to start the container which was stopped. All you need is a
+container ID (same container ID you used earlier to stop a container in
+previous section), you can also get this using ‘<span style='font-family:Consolas'>docker
+ps -a</span>’. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+start a container run “<span style='font-family:Consolas'>docker start
+&lt;&lt;CONTAINER-ID&gt;&gt;</span>”. Replace CONTAINER-ID with container
+identifier you use in previous section to stop the container.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'> <img border=0
+width=444 height=37 id="Picture 650"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image018.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+make sure that container has started successfully run “<span style='font-family:
+Consolas'>docker ps</span>” command. Notice that WordPress container is now
+started.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=677 height=190 id="Picture 651"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image019.png"></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=TaskName>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Removing a Container</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Stopping
+a container does not remove it and that’s the reason why you were able to start
+it again in the previous task. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>To delete/remove a
+container and free the resources you need to issue a different command. Please
+note that this command does not remove the underlying image but rather the
+specific container that was based on the image. To remove the image and reclaim
+its resources, like disk space, you’ll will need to issue a different command
+which is covered under the later section “Removing Container Image”.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+remove a container, run “<span style='font-family:Consolas'>docker rm –f
+&lt;&lt;CONTAINER-ID&gt;&gt;</span>” command. Replace the CONTAINER-ID with the
+container identifier you used in previous section. If you don’t have it handy,
+simply run “docker ps” and copy the container ID from the listing.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=467 height=34 id="Picture 652"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image020.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>The –f switch is used
+to force the remove operation.  It’s needed if you are trying to remove a
+container that is not already stopped.</p>
+
+<p class=TaskName>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Stopping All Containers</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>At
+times you may want to stop all of the running containers and avoid issuing
+command to stop one container at a time. Run “<span style='font-family:Consolas'>docker
+stop $(docker ps -aq)</span>” command to stop all running containers.
+Basically, you are issuing two commands: First the docker ps with relevant
+switches to capture list of container IDs and then passing list of IDs to
+docker stop command.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=527 height=182 id="Picture 653"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image021.png"></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=TaskName>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Removing WordPress Container Image</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Removing
+a container image form a local system will let you reclaim its disk space.
+Please note that this operation is irreversible so proceed with caution. In
+this task you will remove the WordPress container image as you will not be
+using it any more. You must stop all containers using the image before you can
+delete the image, unless you use the force parameter. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+remove a container image, you’ll need its IMAGE ID. Run command “<span
+style='font-family:Consolas'>docker images</span>”. Note down the IMAGE ID
+corresponding to the “tutum/wordpress” image that you will remove in next step.</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=726 height=122 id="Picture 654"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image022.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the command “<span style='font-family:Consolas'>docker rmi &lt;&lt;IMAGE
+ID&gt;&gt; -f</span>”. Replace the IMAGE ID with the image identifier you
+captured in previous step.  Notice the command to remove a container is “docker
+rm” and to remove an image is “docker rmi”, with an ‘i’ for the image. Don’t
+confuse these two commands! The -f is to force the removal, you cannot remove
+an image associated with a stopped container unless you use the force
+parameter. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=721 height=84 id="Picture 655"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image023.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Now,
+run the command “<span style='font-family:Consolas'>docker images</span>”.
+Notice that “tutum/wordpress” image is no longer available. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=703 height=81 id="Picture 656"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image024.png"></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=ExerciseHeading><a name="_Toc504835361">Exercise 3:  Building Custom Container
+Images with Dockerfile</a>: NodeJS, Nginx, and ASP.NET Core 2.x</p>
+
+<p class=MsoNormal>Dockerfile is essentially a plain text file with Docker
+commands in it to create a new image. You can think of it as a configuration file
+with set of instructions needed to assemble a new image. In this exercise you
+will learn common commands that goes into Dockerfile by creating custom images
+based on common technologies like NGINX and Node.JS. </p>
+
+<p class=TaskHeading>Tasks</p>
+
+<p class=TaskName>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Building and Running Node.JS Application as Container </p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+this task you will create a new image based on the Node.js base image. You will
+start with a Dockerfile with instructions to copy the files needed to host a
+custom Node.js application, install necessary software inside the image and
+expose ports to allow the traffic. Later, you will learn how to build the image
+using Dockerfile and finally will run and test it out.   </p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;line-height:107%'>The relevant files related to a
+node.js application along with the Dockerfile are available inside the
+directory “labs/<span style='font-family:Consolas'>module1/nodejs</span>”.  You
+can get to that directory by using the “<span style='font-family:Consolas'>cd</span>”
+command to navigate. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=490
+height=69 id="Picture 657"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image025.png"></p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the command prompt type “ls” and press Enter.  Notice the available files
+include “server.js”, “package.json” and “Dockerfile”.</p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=493
+height=35 id="Picture 658"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image026.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Let’s
+examine the Dockerfile by typing the command “<span style='font-family:Consolas'>nano
+Dockerfile</span>” and press Enter (the file is case sensitive, so make sure
+the D in Dockerfile is capitalized).  You can use any other text editor (for
+example vi etc. but instructions are provided for nano text editor). Notice the
+structure of Dockerfile. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=424 height=407 id="Picture 659"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image027.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Move
+your cursor using the arrow keys to the line starting with “<span
+style='font-family:Consolas'>MAINTAINER Razi Rais</span>” and change the text
+from that to the following: <b>LABEL maintainer=&quot;YourEmail@Email.com”</b>.
+Once finish making changes press “CTRL + X” and then press “Y” when asked for
+confirmation to retain your changes. Finally, you will be asked for file name
+to write. For that press Enter (without changing the name of the file). This
+will close the nano text editor.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=415 height=71 id="Picture 10"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image028.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>You
+are now ready to build a new image based on the Dockerfile you just modified.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'> </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the command “<span style='font-family:Consolas'>docker build -t mynodejs .</span>”
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>(Pay close attention to
+the period that is at the end of command.) Notice how the build command is
+reading instructions from the Dockerfile staring from the top and executing
+them one at a time.  This will take a few minutes to pull the image down to
+your VM. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=703 height=198 id="Picture 660"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image029.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>When
+it is complete, you will see a couple of npm warnings, these are expected. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=477 height=328 id="Picture 661"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image030.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the command “<span style='font-family:Consolas'>docker images</span>” and
+notice the new container image appears with the name “mynodejs”. Also notice
+the presence of parent image “node” that was also pulled from Docker Hub during
+the build operation. </p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=805 height=83 id="Picture 662"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image031.png"></p>
+
+<p class=TaskDetail style='margin-left:1.0in;text-indent:-.25in'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Finally,
+lets create and run a new container based on “mynodejs” image. Run command “<span
+style='font-family:Consolas'>docker run -d -p 8080:8080 mynodejs</span>”. (The
+“-d” parameter will run the container in the background, whereas the “-p”
+parameter publishes the containers ports to the host). Here are binding the
+port of the container (port number on right-side of colon) to the port of the
+host machine (port number on the left-side of the colon.)</p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=804
+height=36 id="Picture 663"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image032.png"></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>10.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span>To test the “mynodejs”
+application, go back to your Firefox browser and go to localhost:8080. </p>
+
+<p class=TaskDetail style='margin-left:1.0in'><img border=0 width=731
+height=210 id="Picture 664"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image033.png"></p>
+
+<p class=TaskName>&nbsp;</p>
+
+<p class=TaskName style='text-indent:0in'>&nbsp;</p>
+
+<p class=TaskName>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Building and Running NGINX Container  </p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+this task you will create a new image using the NGINX web server base image
+hosting a simple static html page. You will start with a Dockerfile with
+instructions to define its base image, then copy the static html file inside
+the image and then specify the startup command for the image (using CMD
+instruction). Later, you will learn how to build the image using Dockerfile and
+finally will run and test it out.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>The relevant files
+including static html file “index.html” along with the Dockerfile are available
+inside the directory “labs/module1/nginx”.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=526 height=53 id="Picture 665"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image034.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Type
+“<span style='font-family:Consolas'>ls</span>” and press Enter.  Notice the
+available files include “server.js” and “Dockerfile”. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=475 height=31 id="Picture 666"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image035.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Let’s
+examine the Dockerfile by typing the command “<span style='font-family:Consolas'>nano
+Dockerfile</span>” and press Enter.  You can use any other text editor (for
+example, vi, etc.), but instructions are provided for nano text editor). Notice
+the structure of Dockerfile. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=448 height=236 id="Picture 668"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image036.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Move
+your cursor by using the arrow keys to the line starting with “<span
+style='font-family:Consolas'>MAINTAINER</span>” and change the text from “Razi
+Rais” to your name (or any other text of your liking). Once finish making
+changes press “CTRL + X” and then press “Y” when asked for confirmation to
+retain your changes. Finally, you will be asked for file name to write. For that
+press Enter (without changing the name of the file). This will close the nano
+text editor.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=415 height=71 id="Picture 15"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image028.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>You
+are now ready to build a new container image based on the Dockerfile you just
+modified. <br>
+Run the command “<span style='font-family:Consolas'>docker build -t mynginx .</span>”
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=728 height=389 id="Picture 669"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image037.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><i>Notice how the build
+command is reading instructions from the Docker file starting from the top and
+executing them one at a time.  The image will download much faster as this is a
+very small image.</i></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If
+you want to see the layers of an image, you can do ‘docker history mynginx’ and
+see the one you just built.  You can also try running this command on other
+images you have on your VM too. </p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=837 height=483 id="Picture 670"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image038.png"></p>
+
+<p class=MsoNormal style='margin-bottom:8.0pt;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+the command “<span style='font-family:Consolas'>docker images</span>” and
+notice the new container image appears with the name “mynginx”.  Also notice
+the presence of parent image “nginx” that was pulled from Docker Hub during the
+build operation. Take a look at the sizes of different images also—this will
+become important when you build your own custom images to reduce the size for
+both security and performance. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=828 height=123 id="Picture 671"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image039.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Finally,
+create and run a new container based on “mynginx” image. Run command “docker
+run -d -p 80:80 mynginx”. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=735 height=34 id="Picture 673"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image040.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>9.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+test the node app, go to your Firefox browser and go to localhost.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=729 height=211 id="Picture 674"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image041.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=TaskName>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Building and Running ASP.NET Core 2.x Application Inside Container </p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>In
+this demo you will build ASP.NET Core 2.x application and then package and run
+it as a container.  Change to the relevant directory “labs/<span
+style='font-family:Consolas'>module1/aspnetcore</span>”:</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=846 height=104 id="Picture 675"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image042.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'> </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Normally
+you would need to run dotnet restore, build, and publish.. however, this is
+already included for you in the Dockerfile. <br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Now
+that application is ready you will create a container image for it. You are
+provided with a Dockerfile. View the content of Dockerfile by running a command
+“<span style='font-family:Consolas'>nano Dockerfile</span>”. To exit the editor
+press “CTRL+X”. The Dockerfile contents should match the screenshot below:</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=356 height=133 id="Picture 676"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image043.png"><br>
+<br>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+create the container image run the
+command                                                 </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>“<span
+style='font-family:Consolas'>docker build -t myaspcoreapp:2.0 .</span> ”</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>Notice the use of tag
+“2.0” that signifies the use of framework version of dotnet core.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=796 height=249 id="Picture 678"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image044.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Launch
+the container running the app inside it by running the command   </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>“<span
+style='font-family:Consolas'>docker run -d -p 8090:80 myaspcoreapp:2.0</span>”</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=839 height=49 id="Picture 679"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image045.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>You are now running
+ASP.NET Core application inside the container listening at port 80 which is
+mapped to port 8090 on the host.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+test the application, go to localhost:8090 in your Firefox browser. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=727 height=498 id="Picture 677"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image046.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>              </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=ExerciseHeading><a name="_Toc504835362">Exercise 4:  Interaction with a
+Running Container</a> </p>
+
+<p class=MsoNormal>In the previous exercise you built and ran containers based
+on Dockerfile. At times you may want to interact with a running container for
+the purposes of troubleshooting, monitoring etc. You may also want to make
+changes/updates to a running container and then build a new image from it.
+Let’s see first how to interact with a running container and then make changes
+to it and then persist it as a new image. </p>
+
+<p class=TaskHeading>Tasks</p>
+
+<p class=TaskName>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Interaction with a Running Container  </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>On
+the command line run “<span style='font-family:Consolas'>docker ps</span>” to
+list all the currently running containers on your virtual machine.</p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img border=0 width=847 height=151
+id="Picture 683"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image047.png"></p>
+
+<p class=MsoListParagraph style='margin-left:1.0in'>Notice that multiple
+containers are running. To establish interactive session a with a running
+container you will need its <b>CONTAINER ID or NAME</b>. Let’s establish an
+interactive session to a container based on “<b>mynodejs</b>” image. Please
+note that your <b>CONTAINER ID or NAME </b>will probably be different. And,
+unless you specified a name, Docker came up with a random adjective and noun
+and smushed them together to come up with its own clever name. </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Run
+a command “docker exec -it &lt;&lt;CONTAINER ID OR NAME&gt;&gt; bash” on your <b>mynodejs
+container</b>. (docker exec is used to run a command in a running container.
+The “it” parameter will invoke an interactive bash shell on the container.) 
+Notice that a new interactive session is now establish to a running container.
+Since “bash” is the program that was asked to be executed you now have access
+to full bash shell inside the container. </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'> <img border=0 width=777 height=35
+id="Picture 684"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image048.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>You
+can run a command “<span style='font-family:Consolas'>ls</span>” to view the
+listing of files and directories. Notice it has all the files copied by
+Dockerfile command in previous section. </p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=492 height=36 id="Picture 685"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image049.png"></p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>NOTE: For more information regarding
+running commands inside docker container please visit:
+https://docs.docker.com/engine/reference/commandline/exec</p>
+
+<p class=TaskName>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Making Changes to a Running Container  </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>While you are interacting and running
+commands inside a running container, you may also want to make changes/updates
+to it. Later, you may also create a brand-new image out of these changes.  In
+this task you will make changes to “mynodejs” container image, test them out
+and finally create a new image (without the need of Dockerfile). <u>Please note
+that this approach of creating container images is generally used to quickly
+test various changes, but the recommend best practice way to create container
+images is to use Dockerfile.</u></p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>First, you will make updates to “server.js”
+file. You should have active session already established from previous section
+(if not then please follow the instructions from previous section to create an
+active session now). </p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>Before we can edit the
+“server.js” file we need to install a text editor. Basically, to keep the size
+of container down to absolute minimum, the “nodejs” container image does not
+have any extra software installed on the container. This is a common theme when
+building images and is also recommend practice.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Before
+installing any software run the command “<span style='font-family:Consolas'>apt-get
+update</span>” (Note the dash between “apt” and “-get”.)</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.0in'><img border=0
+width=847 height=138 id="Picture 686"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image050.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+install “nano” run a command “<span style='font-family:Consolas'>apt-get
+install nano</span>”</p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img border=0 width=769 height=189
+id="Picture 687"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image051.png"></p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>After
+“nano” is installed successfully, run the command “<span style='font-family:
+Consolas'>nano server.js</span>” to open “server.js” file for editing.</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=464 height=20 id="Picture 688"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image052.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Use
+the arrow keys to go to the line starting with “<span style='font-family:Consolas'>res.Send(…”
+</span>and update the text from “<span style='font-family:Consolas'>Hello
+Node.js!!!</span>” to “<span style='font-family:Consolas'>Hello Node.js AGAIN!!!</span>”.
+Your final changes should look like following:</p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img border=0 width=521 height=353
+id="Picture 689"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image053.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Once
+you finish making changes press “CTRL + X” and then press “Y” when asked for
+confirmation to retain changes. Finally, you will be asked for file name to
+write. For that press enter (without changing the name of the file). This will
+close the Nano text editor.</p>
+
+<p class=MsoListParagraphCxSpMiddle>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>6.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+save the updates and exit the interactive bash session, run the command “<span
+style='font-family:Consolas'>exit</span>”</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=342 height=18 id="Picture 690"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image054.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>7.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The
+running container needs to be stopped first and then started again to reflect
+the changes. Run the command “<span style='font-family:Consolas'>docker stop
+&lt;&lt;CONTAINER ID&gt;&gt;</span>” to stop the container.  Run the command
+“docker start &lt;&lt;CONTAINER ID&gt;&gt;” to start the container.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=683 height=67 id="Picture 691"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image055.png"></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;text-indent:-.25in;line-height:107%'>8.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Finally,
+to test the update you have made to the container go to Firefox and
+localhost:8080. Notice the output “Hello Node.js AGAIN!!!”. This verifies that
+changes to the container were persisted.</p>
+
+<p class=TaskDetail style='margin-bottom:8.0pt;line-height:107%'><img border=0
+width=666 height=200 id="Picture 692"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image056.png"></p>
+
+<p class=TaskDetail style='margin-bottom:8.0pt;line-height:107%'>&nbsp;</p>
+
+<p class=TaskName>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Interaction with a Running Container  </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:.75in;line-height:107%'>In the task you have made changes to
+running container. However, these changes are only available to that container
+and if you were to remove the container, these changes would be lost. One way
+to address this is by creating a new container image based on running container
+that has the changes. This way changes will be available as part of a new
+container image. This is helpful during dev/test phases where rapid development
+and testing requires a quick turn-around time. However, this approach is
+generally not recommended as it’s hard to manage and scale at production level.
+Also, if content is the only piece that needs to be changed and shared, then
+using “volumes” may be another viable option. Volumes are covered in later
+module.</p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+create new image run the command <span style='color:black'>“</span><span
+style='font-family:Consolas;color:black'>docker commit</span><span
+style='font-family:Consolas'> &lt;&lt;CONTAINER ID&gt;&gt; <span
+style='color:black'>mynodejsv2</span></span><span style='color:black'>”. (The
+docker commit command is used to create a new image from a container’s
+changes.)</span> If you don’t already have it, you can use “<span
+style='font-family:Consolas'>docker ps”</span> command to get the list of
+running containers or “<span style='font-family:Consolas'>docker ps –a</span>”
+to get list of all the containers that are stopped and capture the CONTAINER ID
+of the container you have updated in previous section.  </p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img border=0 width=775 height=34
+id="Picture 693"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image057.png"></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Now,
+view the list of all container images by running the command “<span
+style='font-family:Consolas'>docker images</span>” and notice the availability
+of new image with name “mynodejsv2”</p>
+
+<p class=TaskDetail style='margin-top:0in;margin-right:.1in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><img border=0 width=808 height=150
+id="Picture 694"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image058.png"></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>You now have a
+container image with the changes you made and tested earlier and is ready to be
+used. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+test the new image run a command “<span style='font-family:Consolas'>docker run
+-d -p 8081:8080 mynodejsv2</span>”. This will create a new container based on
+the image “mynodejsv2”.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=836 height=36 id="Picture 695"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image059.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Finally,
+to test the container, go to localhost:8081 in Firefox. Notice the text “<span
+style='font-family:Consolas'>Hello Node.js AGAIN!!!</span>” is returned from
+the node.js application. This attest that changes were committed properly to
+new image and hence available to any container created based on the that image.
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'><img border=0
+width=592 height=164 id="Picture 696"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image060.png"></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.0in;line-height:107%'>&nbsp;</p>
+
+<p class=ExerciseHeading><a name="_Hlk490757353"></a><a name="_Toc504835363">Exercise
+5:  Tagging</a> </p>
+
+<p class=MsoNormal>In this exercise you will learn the role of tagging in
+container and how to tag new and existing container images using Docker
+commands.</p>
+
+<p class=TaskHeading>Tasks</p>
+
+<p class=TaskName>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Tagging Existing Container Image</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'><a name="_Hlk514344853">In this task you
+will tag “mynodejs” container image with “v1”. Recall from last task that
+currently this image has “latest” tag associated with it. You can simply run
+“docker images” to verify that.  When working with container images it becomes
+important to provide consistent versioning information. </a></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>Tagging provides you with the ability to
+tag container images properly at the time of building a new image using the
+“docker build –t imagename:tag .” command and then refer to image (for example
+inside Dockerfile with FROM statement) using a format “image-name:tag”. </p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>Basically, if you don’t provide a tag,
+Docker assumes that you meant “latest” and use it as a default tag for the
+image.  It is not good practice to make images without tagging them.  <b>You’d
+think you could assume latest = most recent image version always? Wrong. 
+That’s not true at all.  Latest is just the tag which is applied to an image by
+default which does not have a tag.</b> If you push a new image with a tag which
+is neither empty nor ‘latest’, :latest will not be affected or created.  Latest
+is also easily overwritten by default if you forget to tag something again in
+the future. Careful!!!</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:1.0in;line-height:107%'>When you run “docker images” notice the
+“TAG” column and pay attention to the fact that for all the custom images
+created in the lab so far have tag value of “latest”.</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=818 height=152 id="Picture 697"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image061.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>To understand
+importance of tagging take a look at container image created in previous
+section “mynodejsv2”. The “v2” at the very end was appended to provide an
+indicator that this is the second version of the image “mynodejs”.  The
+challenge with this scheme is that there is no inherent connection between the
+“mynodejs” and “mynodejsv2”. With tagging, the same container image will take
+the format “mynodejs:v2”. This way you are telling everyone that “v2” is
+different but it does have relation with “mynodejs” container image.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>Please note that tags
+are just strings. So, any string including “v1”, “1.0”, “1.1”, “1.0-beta”, and “banana”
+all qualify as a valid tag. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>However, you should
+always want to follow consistent nomenclature when using tagging to reflect
+versioning. This is critical because when you start developing and deploying
+containers into production you may want to roll back to previous versions in a
+consistent manner. Not having a well-defined scheme for tagging will make it
+very difficult particularly when it comes to troubleshooting containers.  </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>NOTE: A good example
+of various tagging scheme chosen by Microsoft with dotnet core framework is
+available at: <a href="https://hub.docker.com/r/microsoft/dotnet/tags">https://hub.docker.com/r/microsoft/dotnet/tags</a>
+</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>To
+tag an existing docker image, run the command </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>“docker tag<span
+style='font-family:Consolas'> &lt;&lt;IMAGE ID or IMAGE NAME&gt;&gt; </span>mynodejs:v1”.
+Replace the IMAGE ID with the image id of “mynodejs” container image.  To see
+the updated tag for “mynodejs” image run the command “<span style='font-family:
+Consolas'>docker images</span>”. </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=846 height=188 id="Picture 698"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image062.png"><br>
+Notice how “latest” and “v1” both exist. V1 is technically newer, and latest
+just signifies the image that did not have a version/tag before and can feel
+misleading.  Also, note the Image ID for both are identical.  The image and its
+content / layers are all cached on your machine.  The Image ID is content
+addressable, so the full content of it is hashed through a hashing algorithm
+and it spits out an ID.  If the content of any two (or more) images are the
+same, then the Image ID will be the same, and only one copy of the actual
+layers are on your machine and pointed to by many different image names/tags.</p>
+
+<p class=TaskName style='text-indent:0in'>&nbsp;</p>
+
+<p class=TaskName>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Tagging New Container Image</p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Tagging
+a new image is done at the time when you build a container image. it’s a
+straightforward process that requires you to simply add the “:tag” at the end
+of container image name.</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Navigate
+to the directory “labs/module1/nginx” that contains the “niginx” files along
+with Dockerfile. You can use the command “cd labs/module1/nginx”</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Build
+a new image by running the command “<span style='font-family:Consolas'>docker
+build -t nginxsample:v1</span> .” In this case you’re creating a new image
+based on Dockerfile (covered in earlier exercise on NGINX). </p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=773 height=252 id="Picture 699"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image063.png"></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'>&nbsp;</p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;text-indent:-.25in;line-height:107%'>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>If
+you run a “docker images” command, it will list the new container image with
+tag “v1”</p>
+
+<p class=MsoListParagraphCxSpLast style='margin-top:0in;margin-right:0in;
+margin-bottom:8.0pt;margin-left:1.25in;line-height:107%'><img border=0
+width=803 height=187 id="Picture 700"
+src="Lab%201%20-%20Introduction%20to%20Containers_files/image064.png"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:.1in;margin-bottom:6.0pt;
+margin-left:0in'>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>
